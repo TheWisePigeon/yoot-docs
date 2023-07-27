@@ -1,0 +1,6 @@
+[book]
+authors = ["TheWisePigeon"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Yoot official documentation"
