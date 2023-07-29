@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Yoot official documentation</title>
+        <title>Entities - Yoot official documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts.html"><strong aria-hidden="true">2.</strong> Basics Concepts</a></li><li class="chapter-item expanded "><a href="entities.html"><strong aria-hidden="true">3.</strong> Entities</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts.html"><strong aria-hidden="true">2.</strong> Basics Concepts</a></li><li class="chapter-item expanded "><a href="entities.html" class="active"><strong aria-hidden="true">3.</strong> Entities</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,22 +166,88 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">INTRODUCTION</a></h1>
-<p>Welcome to YOOT's official documentation</p>
-<p>YOOT is a minimalistic CMS focused on simplicity and ease of use. It aims to provide a quick way
-for content driven business owners and their developers to spin up storage for their applications.</p>
-<p>YOOT offers a friendly web interface to manage your data and also an API that exposes that data to external apps. 
-This documentation focuses only on how to use the API. If you want a quick your of the <a href="https://yootcms.xyz/console">Yoot console</a>,
-watch <a href="Link">this YouTube video</a>.</p>
+                        <h1 id="entities"><a class="header" href="#entities">Entities</a></h1>
+<p>The API exposes 3 endpoints for interacting with entities</p>
+<h2 id="create-an-entity"><a class="header" href="#create-an-entity">Create an entity</a></h2>
+<p>Send a POST request to the <code>/entities</code> endpoint. The request body must be a form data that contains 
+the <code>name</code> of the entity and it's schema. If you don't know what a schema is please refer to this part 
+of the documentation <a href="https://docs.yootcms.xyz/entities.html">Entities</a>.</p>
+<p>Here is an example using <code>fetch</code> in JavaScript</p>
+<pre><code class="language-js">const entity_name = &quot;Product&quot;
+const schema = {
+    &quot;name&quot;:&quot;Text&quot;,
+    &quot;price&quot;:&quot;Number&quot;,
+    &quot;image&quot;:&quot;Image&quot;,
+    &quot;description&quot;:&quot;Text&quot;,
+    &quot;in_discount&quot;:&quot;Boolean&quot;
+}
+const form_data = new FormData()
+form_data.append('name', entity_name)
+form_data.append('schema', schema)
+fetch(
+    'https://api.yootcms.xyz/entities',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;POST&quot;,
+        body: form_data
+    }
+)
+</code></pre>
+<p>YOOT will return status codes and specific error messages for you to know if the operation was
+successful or not. Check the <a href="/errors.html">Errors</a> page for more information.</p>
+<h2 id="get-entities"><a class="header" href="#get-entities">Get entities</a></h2>
+<p>Example using <code>fetch</code> in JavaScript</p>
+<pre><code class="language-js">fetch(
+    'https://api.yootcms.xyz/entities',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        }
+    }
+)
+</code></pre>
+<p><strong>NOTE</strong> : Entities names are unique per project which justifies the use of the entities names
+instead of their id</p>
+<h2 id="update-an-entity"><a class="header" href="#update-an-entity">Update an entity</a></h2>
+<p>Example using <code>fetch</code> in JavaScript. For the moment only the name of an entity can be modified.</p>
+<pre><code class="language-js">const new_name = &quot;New name&quot;
+const form_data = new FormData()
+form_data.append('name', new_name)
+fetch(
+    'https://api.yootcms.xyz/entities/:entity_name',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;PUT&quot;,
+        body:form_data
+    }
+)
+</code></pre>
+<h2 id="delete-an-entity"><a class="header" href="#delete-an-entity">Delete an entity</a></h2>
+<p>Deleting an entity will delete every data related to that entity. This action is not reversible.
+Example using <code>fetch</code> in JavaScript</p>
+<pre><code class="language-js">fetch(
+    'https://api.yootcms.xyz/entities/:entity_name',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;DELETE&quot;
+    }
+)
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-
-                            <a rel="next" href="basic_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="basic_concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+
 
                         <div style="clear: both"></div>
                     </nav>
@@ -189,10 +255,10 @@ watch <a href="Link">this YouTube video</a>.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-
-                    <a rel="next" href="basic_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="basic_concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+
             </nav>
 
         </div>
