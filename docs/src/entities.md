@@ -1,5 +1,5 @@
 # Entities
-The API exposes 3 endpoints for interacting with entities
+The API exposes 4 endpoints for interacting with entities
 
 ## Create an entity
 Send a POST request to the `/entities` endpoint. The request body must be a form data that contains 

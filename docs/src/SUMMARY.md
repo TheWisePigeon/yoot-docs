@@ -4,3 +4,4 @@
 - [Basics Concepts](./basic_concepts.md)
 - [Entities](./entities.md)
 - [Entries](./entries.md)
+- [Errors](./errors.md)
