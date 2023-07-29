@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - Yoot official documentation</title>
-        <base href="/">
+        <title>Entries - Yoot official documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -84,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts.html"><strong aria-hidden="true">2.</strong> Basics Concepts</a></li><li class="chapter-item expanded "><a href="entities.html"><strong aria-hidden="true">3.</strong> Entities</a></li><li class="chapter-item expanded "><a href="entries.html"><strong aria-hidden="true">4.</strong> Entries</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts.html"><strong aria-hidden="true">2.</strong> Basics Concepts</a></li><li class="chapter-item expanded "><a href="entities.html"><strong aria-hidden="true">3.</strong> Entities</a></li><li class="chapter-item expanded "><a href="entries.html" class="active"><strong aria-hidden="true">4.</strong> Entries</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,13 +166,94 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="entries"><a class="header" href="#entries">Entries</a></h1>
+<p>The API expose 4 endpoints for interacting with entries. Check out <a href="/errors">Errors</a> for more info about
+what status code and error response mean</p>
+<h2 id="insert-an-entry"><a class="header" href="#insert-an-entry">Insert an entry</a></h2>
+<p>To insert an entry in an entity you will have to create a form data and append to it, keys that match
+the field names on the schema of the entity. We will use our Product entity as example here.
+Our Product schema is the following</p>
+<pre><code class="language-json">{
+    &quot;name&quot;:&quot;Text&quot;,
+    &quot;price&quot;:&quot;Number&quot;,
+    &quot;image&quot;:&quot;Image&quot;,
+    &quot;description&quot;:&quot;Text&quot;,
+    &quot;in_discount&quot;:&quot;Boolean&quot;
+}
+</code></pre>
+<p>Here is an example of how we will insert an entry in the Product entity using JavaScript on Node</p>
+<pre><code class="language-js">import { openAsBlob } from &quot;node:fs&quot; //node^19.8
+import { readFile } from &quot;node:fs/promises&quot;
+const form_data = new FormData()
+const file = await openAsBlob('/path/to/image')
+//Image upload can be done multiple ways
+//import * as fs from &quot;fs&quot;
+//const file = fs.createReadStream('/path/to/image')
+form_data.append('image', file)
+form_data.append('name', &quot;Product name&quot;)
+form_data.append('price', '1200')
+form_data.append('description', 'Some description')
+form_data.append('in_discount', 'true')
+
+fetch(
+    'https://api.yootcms.xyz/entities',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;POST&quot;,
+        body: form_data
+    }
+)
+</code></pre>
+<h2 id="getting-entries-in-an-entity"><a class="header" href="#getting-entries-in-an-entity">Getting entries in an entity</a></h2>
+<p>Example using fetch with JavaScript</p>
+<pre><code class="language-js">fetch(
+    'https://api.yootcms.xyz/entities/:entity_name/entries',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        }
+    }
+)
+</code></pre>
+<h2 id="update-an-entry"><a class="header" href="#update-an-entry">Update an entry</a></h2>
+<p>Example using fetch with JavaScript</p>
+<pre><code class="language-js">//Construct the body as a form data with the field we want to update
+const form_data = new FormData()
+form_data.append('name', &quot;New product name&quot;)
+form_data.append('in_discount', 'false')
+fetch(
+    'https://api.yootcms.xyz/entities/:entity_name/entries/:entry_id',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;PUT&quot;,
+        body: form_data
+    }
+)
+</code></pre>
+<h2 id="delete-an-entry"><a class="header" href="#delete-an-entry">Delete an entry</a></h2>
+<p>Example using fetch with JavaScript</p>
+<pre><code class="language-js">fetch(
+    'https://api.yootcms.xyz/entities/:entity_name/entries/:entry_id',
+    {
+        headers:{
+            &quot;Authorization&quot;: &quot;API_KEY_HERE&quot;
+        },
+        method:&quot;DELETE&quot;,
+    }
+)
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="entities.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -182,6 +262,9 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="entities.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
