@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts.html"><strong aria-hidden="true">2.</strong> Basics Concepts</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,7 +167,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <h1 id="introduction"><a class="header" href="#introduction">INTRODUCTION</a></h1>
+<p>Welcome to YOOT's official documentation</p>
+<p>YOOT is a minimalistic CMS focused on simplicity and ease of use. It aims to provide a quick way
+for content driven business owners and their developers to spin up storage for their applications.</p>
+<p>YOOT offers a friendly web interface to manage your data and also an API that exposes that data to external apps. 
+This documentation focuses only on how to use the API. If you want a quick your of the <a href="https://yootcms.xyz/console">Yoot console</a>,
+watch <a href="Link">this YouTube video</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="projects"><a class="header" href="#projects">Projects</a></h1>
+<p>A project in YOOT terms stands for something like a database. The project is created on the console and inside a project
+are Entities which could be compared to SQL tables, finally these Entities contains entries which can be compared to rows in 
+an SQL database.</p>
+<h1 id="api-keys-and-permissions"><a class="header" href="#api-keys-and-permissions">API keys and permissions</a></h1>
+<p>Projects are created on the console, and one or many API keys can be linked to a project. These keys have permissions, set by the project
+owner. Yoot API keys have 4 main permissions:</p>
+<ul>
+<li>Read permissions:
+With this permission, the key is authorized to fetch any data contained in the project. That means any entity and any entry contained in any of these entities.</li>
+<li>Create permission:
+With this permission, the key is able to create data in the project. That means the key can be used to create entities and insert entries in any entities.</li>
+<li>Write permission:
+Slightly different from the Create permission, this one allows the key to modify existing data in the project. A key with Create permission can create data but not 
+modify that data. A key with only Write permission can modify data but can not create any new data</li>
+<li>Delete permission:
+This one's name speaks for itself. With this permission the key is able to delete existing data in the project.</li>
+</ul>
+<p>Note that the Read permission is always granted by default to the key and can not be removed</p>
+<h1 id="api-calls-authentication"><a class="header" href="#api-calls-authentication">API calls authentication</a></h1>
+<p>Every request made to the YOOT API must contain a valid API key in it's Authorization header. Head over to the next page
+to learn more about the different endpoints and how to use the API overall</p>
 
                     </main>
 
