@@ -31,7 +31,7 @@ form_data.append('description', 'Some description')
 form_data.append('in_discount', 'true')
 
 fetch(
-    'https://api.yootcms.xyz/entities',
+    'https://api.yootcms.xyz/v1/entities',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
@@ -46,7 +46,7 @@ fetch(
 Example using fetch with JavaScript
 ```js
 fetch(
-    'https://api.yootcms.xyz/entities/:entity_name/entries',
+    'https://api.yootcms.xyz/v1/entities/:entity_name/entries',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
@@ -63,7 +63,7 @@ const form_data = new FormData()
 form_data.append('name', "New product name")
 form_data.append('in_discount', 'false')
 fetch(
-    'https://api.yootcms.xyz/entities/:entity_name/entries/:entry_id',
+    'https://api.yootcms.xyz/v1/entities/:entity_name/entries/:entry_id',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
@@ -79,7 +79,7 @@ fetch(
 Example using fetch with JavaScript
 ```js
 fetch(
-    'https://api.yootcms.xyz/entities/:entity_name/entries/:entry_id',
+    'https://api.yootcms.xyz/v1/entities/:entity_name/entries/:entry_id',
     {
         headers:{
             "Authorization": "API_KEY_HERE"

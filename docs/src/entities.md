@@ -38,7 +38,7 @@ successful or not. Check the [Errors](/errors.html) page for more information.
 Example using `fetch` in JavaScript
 ```js
 fetch(
-    'https://api.yootcms.xyz/entities',
+    'https://api.yootcms.xyz/v1/entities',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
@@ -57,7 +57,7 @@ const new_name = "New name"
 const form_data = new FormData()
 form_data.append('name', new_name)
 fetch(
-    'https://api.yootcms.xyz/entities/:entity_name',
+    'https://api.yootcms.xyz/v1/entities/:entity_name',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
@@ -73,7 +73,7 @@ Deleting an entity will delete every data related to that entity. This action is
 Example using `fetch` in JavaScript
 ```js
 fetch(
-    'https://api.yootcms.xyz/entities/:entity_name',
+    'https://api.yootcms.xyz/v1/entities/:entity_name',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
