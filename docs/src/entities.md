@@ -20,7 +20,7 @@ const form_data = new FormData()
 form_data.append('name', entity_name)
 form_data.append('schema', schema)
 fetch(
-    'https://api.yootcms.xyz/entities',
+    'https://api.yootcms.xyz/v1/entities',
     {
         headers:{
             "Authorization": "API_KEY_HERE"

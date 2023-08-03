@@ -15,12 +15,13 @@ Our Product schema is the following
     "in_discount":"Boolean"
 }
 ```
-Here is an example of how we will insert an entry in the Product entity using JavaScript on Node
+Here is an example of how we will insert an entry in the Product entity using JavaScript on Node.
 ```js
 import { openAsBlob } from "node:fs" //node^19.8
 import { readFile } from "node:fs/promises"
 const form_data = new FormData()
 const file = await openAsBlob('/path/to/image')
+//If using from a browser just append the File object
 //Image upload can be done multiple ways
 //import * as fs from "fs"
 //const file = fs.createReadStream('/path/to/image')
@@ -31,7 +32,7 @@ form_data.append('description', 'Some description')
 form_data.append('in_discount', 'true')
 
 fetch(
-    'https://api.yootcms.xyz/v1/entities',
+    'https://api.yootcms.xyz/v1/entities/:entity_name/entries',
     {
         headers:{
             "Authorization": "API_KEY_HERE"
